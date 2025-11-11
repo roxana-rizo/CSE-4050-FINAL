@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Quiz System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="login-container">
+    <h2>Welcome to our group project Quiz</h2>
+    <p>Please enter your name to continue</p>
+
+    <input type="text" id="username" placeholder="Enter your name">
+
+    <button id="startBtn">Start Quiz</button>
+  </div>
+
+  <script>
+    const btn = document.getElementById("startBtn");
+
+    btn.addEventListener("click", () => {
+      const name = document.getElementById("username").value.trim();
+
+      if (!name) {
+        alert("Please enter your name!");
+        return;
+      }
+
+      // Save our users answers and display name from loign
+      localStorage.setItem("quizUser", name);
+
+      // This feature takes us to our quiz
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
