@@ -1,38 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Login - Quiz System</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Group Quiz</title>
+    <link rel="stylesheet" href="style(1).css">
 </head>
+<body class="auth-main">
 
-<body>
-  <div class="login-container">
-    <h2>Welcome to our group project Quiz</h2>
-    <p>Please enter your name to continue</p>
+    <header class="header">
+        <a href="index(2).html" class="logo">Group Project</a>
+    </header>
 
-    <input type="text" id="username" placeholder="Enter your name">
+    <div class="auth-container">
 
-    <button id="startBtn">Start Quiz</button>
-  </div>
+        <div class="auth-box">
+            <h1>Login</h1>
 
-  <script>
-    const btn = document.getElementById("startBtn");
+            <div class="auth-field">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Enter username">
+            </div>
 
-    btn.addEventListener("click", () => {
-      const name = document.getElementById("username").value.trim();
+            <div class="auth-field">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter password">
+            </div>
 
-      if (!name) {
-        alert("Please enter your name!");
-        return;
-      }
+            <button class="auth-btn" id="loginBtn">Login</button>
 
-      // Save our users answers and display name from loign
-      localStorage.setItem("quizUser", name);
+            <p class="auth-switch-text">
+                Don’t have an account?
+                <a href="register.html" class="auth-link-btn">Register here</a>
+            </p>
+        </div>
 
-      // This feature takes us to our quiz
-      window.location.href = "index.html";
-    });
-  </script>
+    </div>
+
+    <script>
+        const loginBtn = document.getElementById("loginBtn");
+
+        loginBtn.onclick = async () => {
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            if (!username || !password) {
+                alert("Please enter both username and password.");
+                return;
+            }
+
+            try {
+                const res = await fetch("http://localhost:5001/api/auth/login", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({username, password})
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    alert(data.error || "Login failed.");
+                    return;
+                }
+
+                // Save login infromation
+                localStorage.setItem("loggedIn", "true");
+                localStorage.setItem("username", data.username);
+                localStorage.setItem("user_id", data.user_id);
+
+                alert("Login successful!");
+                window.location.href = "index(2).html";
+
+            } catch (error) {
+                alert("Cannot connect to server. Make sure backend is running.");
+            }
+        };
+    </script>
+
 </body>
 </html>
