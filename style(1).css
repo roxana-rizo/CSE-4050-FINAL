@@ -1,10 +1,11 @@
 /* Group Project*/
 
+/* RESET + GLOBAL ------------------------------------ */
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:  'sans-serif';
+    font-family: 'sans-serif';
 }
 
 body{
@@ -12,6 +13,8 @@ body{
     background: #09001d;
     overflow: hidden;
 }
+
+/* MAIN BACKGROUND */
 .main{
     min-height: 100vh;
     background: url('/Assets/background2.jpg') no-repeat;
@@ -25,7 +28,7 @@ body{
     pointer-events: none;
 }
 
-/* CSS for header*/
+/* HEADER -------------------------------------------- */
 .header{
     background: transparent; 
     position: fixed;
@@ -52,7 +55,7 @@ body{
     color:#fff;
     text-decoration: none;
     font-weight: 500;
-    margin-left: 35px;
+    margin-left: 25px;
     transition: .3s;
 }
 
@@ -61,8 +64,7 @@ body{
     color: #AA2C86;
 }
 
-/*Css for container (home section)*/
-
+/* HOME SECTION --------------------------------------- */
 .container{
     display: flex;
     height: 100vh;
@@ -77,7 +79,6 @@ body{
     justify-content: center;
     align-items: center;
 }
-
 
 .home-content{
     max-width: 600px;
@@ -116,11 +117,10 @@ body{
 
 .home-content .start-btn:hover{
     background: transparent;
-    /*background: #09001d */
     box-shadow: none;
 }
 
-/* css for quiz note section*/
+/* POPUP GUIDE ---------------------------------------- */
 .popup-info{
     position: absolute;
     top:50%;
@@ -154,7 +154,7 @@ body{
     margin:4px 0 ;
 }
 
-/* css for buttons exit and continue*/
+/* POPUP BUTTONS -------------------------------------- */
 .popup-info .btn-group{
     display: flex;
     justify-content: space-between;
@@ -178,7 +178,6 @@ body{
     font-size: 16px;
     color: #fff;
     font-weight: 600px;
-    box-shadow: 0, 0, 10px, rgba(0, 0, 0, .1);
     cursor: pointer;
     transition: .5s;
 }
@@ -198,8 +197,7 @@ body{
     border-color: #681650;
 }
 
-
-/*Css for container (quiz-section)*/
+/* QUIZ SECTION --------------------------------------- */
 .quiz-section {
     position: relative;
     left: -50%;
@@ -211,7 +209,6 @@ body{
     transition: .8s ease-in-out;
     transition-delay: .25s;
     z-index: 100;
-
 }
 
 .quiz-section.active{
@@ -232,7 +229,6 @@ body{
     transform: scale(.9);
     transition: .3s ease;
     transition-delay: 0s;
-
 }
 
 .quiz-section .quiz-box.active{
@@ -257,7 +253,6 @@ body{
     padding: 20px 0;
     border-bottom: 2px solid #AA2C86;
     margin-bottom: 30px;
-
 }
 
 .quiz-header span{
@@ -276,6 +271,7 @@ body{
     font-weight: 600;
 }
 
+/* OPTIONS -------------------------------------------- */
 .option-list .option{
     width: 100%;
     padding: 12px;
@@ -289,26 +285,25 @@ body{
 
 .option-list .option:hover{
     background: rgba(255, 255, 255, .1);
-    border-color: rgba(255, 255, 255, .1);
 }
 
 .option-list .option.correct{
     background: #09001d;
     color: #00a63d;
     border-color: #00a63d;
-
 }
 
 .option-list .option.incorrect{
     background: #09001d;
     color: #a60045;
     border-color: #a60045;
-
 }
 
 .option-list .option.disabled{
     pointer-events: none;
 }
+
+/* QUIZ FOOTER ---------------------------------------- */
 .quiz-box .quiz-footer{
     display: flex;
     justify-content: space-between;
@@ -344,13 +339,13 @@ body{
     border-color: #AA2C86;
     color: #fff;
 }
+
 .quiz-footer .next-btn.active:hover {
     background: #681650;
     border-color: #681650;
 }
 
-/* CSS for result (answers) box */
-
+/* RESULT BOX ----------------------------------------- */
 .quiz-section .result-box {
     position: absolute;
     top: 50%;
@@ -396,7 +391,6 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .percentage-container .circular-progress::before{
@@ -441,5 +435,98 @@ body{
 .buttons button:hover{
     background: #681650;
     border-color: #681650;
-
 }
+
+/* ============================================================
+   AUTH (Login / Register) PAGE STYLES
+   ============================================================ */
+.auth-main {
+    background: #09001d;
+    min-height: 100vh;
+}
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+}
+
+.auth-box {
+    width: 350px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #AA2C86;
+    border-radius: 10px;
+    padding: 25px 30px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.auth-box h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.auth-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.auth-field label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.auth-field input {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #AA2C86;
+    outline: none;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+
+.auth-btn {
+    width: 100%;
+    height: 40px;
+    background: #046904;
+    border: 2px solid #AA2C86;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #fff;
+}
+
+.auth-btn:hover {
+    background: #681650;
+    border-color: #681650;
+}
+
+.auth-switch-text {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.auth-link-btn {
+    color: #AA2C86;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.auth-note {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.auth-note a {
+    color: #AA2C86;
+}
+
