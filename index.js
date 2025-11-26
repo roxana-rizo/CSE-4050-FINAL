@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ⭐ Serve the frontend folder
+// Serve the frontend folder
 app.use(express.static(path.join(__dirname, '../../frontend')));
 
 // ROUTES
