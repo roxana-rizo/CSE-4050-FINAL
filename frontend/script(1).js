@@ -109,6 +109,14 @@ async function startSelectedQuiz(topic) {
         return;
     }
 
+    // Update quiz title with the selected topic
+    const quizBoxTitle = document.querySelector('.quiz-box h1');
+    if (quizBoxTitle) {
+        // Capitalize first letter of topic
+        const displayTitle = topic.charAt(0).toUpperCase() + topic.slice(1) + ' Quiz';
+        quizBoxTitle.textContent = displayTitle;
+    }
+
     // open quiz view
     quizSection.classList.add('active');
     popupInfo.classList.remove('active');
@@ -284,22 +292,33 @@ function showResultBox() {
 // ===============================
 // PROGRESS CIRCLE
 // ===============================
+let progressInterval = null; // Store the interval globally
+
 function animateCircle() {
     const circularProgress = document.querySelector('.circular-progress');
     const progressValue = document.querySelector('.progress-value');
 
-    let progressStartValue = -1;
-    let progressEndValue = (userScore / quizData.length) * 100;
+    // Clear any existing animation interval
+    if (progressInterval) {
+        clearInterval(progressInterval);
+    }
+
+    // Reset the circle to 0
+    circularProgress.style.background = 'conic-gradient(#AA2C86 0deg, rgba(255,255,255,.1) 0deg)';
+    
+    let progressStartValue = 0;
+    let progressEndValue = Math.round((userScore / quizData.length) * 100);
     let speed = 20;
 
-    let progress = setInterval(() => {
+    progressInterval = setInterval(() => {
         progressStartValue++;
         progressValue.textContent = `${progressStartValue}%`;
         circularProgress.style.background =
             `conic-gradient(#AA2C86 ${progressStartValue * 3.6}deg, rgba(255,255,255,.1) 0deg)`;
 
-        if (progressStartValue == progressEndValue) {
-            clearInterval(progress);
+        if (progressStartValue >= progressEndValue) {
+            clearInterval(progressInterval);
+            progressInterval = null;
         }
     }, speed);
 }
