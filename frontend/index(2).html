@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game Website</title>
+    
+    <link rel="stylesheet" href="style(1).css">
+</head>
+<body>
+
+    <main class="main">
+
+        <!-- Header section -->
+        <header class="header">
+            <a href="#" class="logo">Create an Online Quiz!</a>
+
+            <nav class="navbar">
+                <a href="login.html">Login</a>
+                <a href="#" id="logoutBtn" style="display:none;">Logout</a>
+            </nav>
+        </header>
+
+        <div class="container">
+
+            <!-- QUIZ SECTION -->
+            <section class="quiz-section">
+                <button class="exit-quiz-btn">✕ Exit</button>
+                
+                <div class="quiz-box">
+                    <h1>Group Quiz</h1>
+
+                    <div class="quiz-header">
+                        <span>Read each question carefully</span>
+                        <span class="header-score">Score: 0 / 10</span>
+                    </div>
+
+                    <h2 class="question-text"></h2>
+
+                    <div class="option-list"></div>
+
+                    <div class="quiz-footer">
+                        <span class="question-total"></span>
+                        <button class="next-btn">Next</button>
+                    </div>
+                </div>
+
+                <!-- RESULT BOX -->
+                <div class="result-box">
+                    <h2>Quiz Result!</h2>
+
+                    <div class="percentage-container">
+                        <div class="circular-progress">
+                            <span class="progress-value">0%</span>
+                        </div>
+
+                        <span class="score-text">Your Score 0 out of 10</span>
+                    </div>
+
+                    <div class="buttons">
+                        <button class="tryAgain-btn">Try Again</button>
+                        <button class="goHome-btn">Go To Home</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HOME SECTION -->
+            <section class="home">
+                <div class="home-content">
+                    <h1 class="sr-only">Select a Quiz</h1>
+                    <p class="home-intro">Choose a pre-made quiz or create your own.</p>
+
+                    <div class="quiz-grid">
+                        <div class="quiz-card" data-quiz="html">
+                            <div class="card-image html"></div>
+                            <h3 class="card-title">HTML</h3>
+                            <button class="start-btn" data-quiz="html">Start</button>
+                        </div>
+
+                        <div class="quiz-card" data-quiz="geography">
+                            <div class="card-image geography"></div>
+                            <h3 class="card-title">Geography</h3>
+                            <button class="start-btn" data-quiz="geography">Start</button>
+                        </div>
+
+                        <div class="quiz-card" data-quiz="history">
+                            <div class="card-image history"></div>
+                            <h3 class="card-title">History</h3>
+                            <button class="start-btn" data-quiz="history">Start</button>
+                        </div>
+
+                        <div class="quiz-card" data-quiz="biology">
+                            <div class="card-image biology"></div>
+                            <h3 class="card-title">Biology</h3>
+                            <button class="start-btn" data-quiz="biology">Start</button>
+                        </div>
+
+                        <div class="quiz-card" data-quiz="math">
+                            <div class="card-image math"></div>
+                            <h3 class="card-title">Math</h3>
+                            <button class="start-btn" data-quiz="math">Start</button>
+                        </div>
+
+                        <div class="quiz-card create-card" data-quiz="create">
+                            <div class="card-image create">+</div>
+                            <h3 class="card-title">Create Your Quiz</h3>
+                            <button class="start-btn" data-quiz="create">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- QUIZ GUIDE POPUP -->
+    <div class="popup-info">
+        <h2>Quiz Guide</h2>
+        <span class="info">1. You cannot skip any questions.</span>
+        <span class="info">2. You cannot go back to previous questions.</span>
+        <span class="info">3. After choosing an answer, the rest will lock.</span>
+        <span class="info">4. You will be given 10 questions.</span>
+       
+
+        <div class="btn-group">
+            <button class="info-btn exit-btn">Exit Quiz</button>
+            <a href="#" class="info-btn continue-btn">Continue</a>
+        </div>
+    </div>
+
+    <!-- QUIZ CREATION MODAL -->
+    <div class="quiz-creation-modal" id="quizCreationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create Your Quiz</h2>
+                <button class="modal-close-btn">✕</button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Quiz Title -->
+                <div class="form-group">
+                    <label for="quizTitle">Quiz Title:</label>
+                    <input type="text" id="quizTitle" placeholder="Enter quiz title" maxlength="50">
+                </div>
+
+                <!-- Questions Container -->
+                <div class="questions-container" id="questionsContainer">
+                    <!-- Questions will be added here dynamically -->
+                </div>
+
+                <!-- Add Question Button -->
+                <button class="add-question-btn" id="addQuestionBtn">+ Add Question</button>
+            </div>
+
+            <div class="modal-footer">
+                <button class="modal-btn cancel-btn" id="cancelCreateBtn">Cancel</button>
+                <button class="modal-btn submit-btn" id="submitCreateBtn">Start Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load LOCAL questions for each topic -->
+    <script src="questions.js"></script>
+    <script src="geography.js"></script>
+    <script src="history.js"></script>
+    <script src="biology.js"></script>
+    <script src="math.js"></script>
+
+    <!-- Main quiz logic (now backend + fallback) -->
+    <script src="script(1).js"></script>
+
+    <!-- Optional: logout logic -->
+    <script>
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        if (localStorage.getItem("username") || localStorage.getItem("user_id")) {
+            logoutBtn.style.display = "inline-block";
+        }
+
+        logoutBtn.onclick = () => {
+            localStorage.clear();
+            alert("You have been logged out.");
+            window.location.reload();
+        };
+    </script>
+
+</body>
+</html>
