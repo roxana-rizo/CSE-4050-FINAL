@@ -30,7 +30,7 @@ let selectedQuiz = null; // topic selected from home cards
 // LOAD QUESTIONS FROM BACKEND
 // ===============================
 async function loadQuestions(topic = null) {
-    const baseUrl = "http://localhost:5001/api/quiz/questions";
+    const baseUrl = "http://localhost:5000/api/quiz/questions";
     const url = topic ? `${baseUrl}?topic=${encodeURIComponent(topic)}` : baseUrl;
 
     try {
@@ -328,7 +328,7 @@ function animateCircle() {
 // ===============================
 async function saveScore() {
     try {
-        await fetch("http://localhost:5001/api/quiz/submit", {
+        await fetch("http://localhost:5000/api/quiz/submit", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

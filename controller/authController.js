@@ -1,5 +1,5 @@
 // backend > controllers > authController.js
-const db = require('../config/db');
+const db = require('../backend/db');
 const bcrypt = require('bcryptjs');
 
 // POST /api/auth/register

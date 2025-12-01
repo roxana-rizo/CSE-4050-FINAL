@@ -3,15 +3,17 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 
-const quizRoutes = require('../routes/quizRoutes');
-const authRoutes = require('../routes/authRoutes');
+const quizRoutes = require('../backend/routes/quizRoutes');
+const authRoutes = require('../backend/routes/authRoutes');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 // Serve the frontend folder
-app.use(express.static(path.join(__dirname, '../../frontend')));
+const frontendPath = path.join(__dirname, '../frontend');
+console.log('Serving static files from:', frontendPath);
+app.use(express.static(frontendPath));
 
 // ROUTES
 app.use('/api/quiz', quizRoutes);

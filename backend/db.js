@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const db = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'PASSWORD_OF_USER', // Here we paste the paswword of who ever runs their MySQL Account
+  password: 'ilovepep1', // Here we paste the paswword of who ever runs their MySQL Account
   database: 'quizdb',
   connectionLimit: 10
 });

@@ -1,5 +1,5 @@
 // backend > controllers > quizController.js
-const db = require('../config/db');
+const db = require('../backend/db');
 
 // GET /api/quiz/questions
 exports.getQuestions = (req, res) => {
